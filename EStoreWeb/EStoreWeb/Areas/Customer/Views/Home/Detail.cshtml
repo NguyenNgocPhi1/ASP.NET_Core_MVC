@@ -1,0 +1,47 @@
+﻿@model Product
+@using EStoreWeb.Models;
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+<div class="row">
+
+    <div class="row-md-4">
+        <img src="/@Model.ImageUrl" style="width:300px" />
+    </div>
+    <div class="col-md-7">
+        <h1>Thông tin chi tiết sản phẩm</h1>
+        <p>
+            Tên sản phẩm: @Model.Name
+        </p>
+        <p>
+            Giá sản phẩm: <span class="price">@Model.Price</span>
+        </p>
+        <a asp-action="AddToCart" asp-route-id="@Model.Id" class="btn btn-success">
+            <i class="bi bi-cart"></i> Add To Cart
+        </a>
+    </div>
+
+    <div class="col-md-12">
+        <h1 style="text-align:center">Sản Phẩm cùng loại</h1>
+    </div>
+    @foreach (var x in ViewBag.lst)
+    {
+        <div class="col-md-4 product-item">
+
+            <div class="card">
+                <div class="card-header">
+                    <a asp-action="Detail" asp-route-id="@x.Id">@x.Name</a>
+                </div>
+                <div class="card-body">
+                    <div class="card-title">
+                        <a asp-action="Detail" asp-route-id="@x.Id"><img src="/@x.ImageUrl" /></a>
+                    </div>
+                </div>
+
+            </div>
+            
+        </div>
+    }
+        <div class="col-md-12">
+            <h1>Mô tả sản phẩm</h1>
+            <p>@Html.Raw(Model.Description)</p>
+        </div>
