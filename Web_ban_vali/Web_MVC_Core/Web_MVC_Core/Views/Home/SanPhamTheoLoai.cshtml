@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewData["Title"] = "SanPhamTheoLoai";
+    Layout = "~/Views/Shared/_LayoutOgani.cshtml";
+}
+@using X.PagedList.Mvc.Core
+@model X.PagedList.IPagedList<TDanhMucSp>
+@foreach (var item in Model)
+{
+    @await Html.PartialAsync("PartialSanPham", item)
+}
+        @Html.PagedListPager(Model, page => Url.Action("SanPhamTheoLoai", new { page = page, maloai = ViewBag.maloai }),
+       new PagedListRenderOptions
+       {
+           LiElementClasses = new string[] { "page-item" },
+           UlElementClasses = new string[] { "pagination justify-content-center" },
+           PageClasses = new string[] { "page-link" }
+       })
+
+
+

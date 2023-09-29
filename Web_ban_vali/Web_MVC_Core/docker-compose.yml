@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  web_mvc_core:
+    image: ${DOCKER_REGISTRY-}webmvccore
+    build:
+      context: .
+      dockerfile: Web_MVC_Core\Dockerfile
